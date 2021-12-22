@@ -68,6 +68,9 @@
       color: red;
       font-weight: normal;
     }
+    p {
+      padding: 10px 0;
+    }
   }
   .item__shopping {
     display: flex;
@@ -83,18 +86,14 @@
       border: none;
       border-radius: 10px;
       width: max-content;
+      color: white;
+      font-size: 20px;
       @include sm() {
         width: max-content;
       }
       transition: all 0.5s;
       &:hover {
         background-color: #00a149;
-      }
-      a {
-        color: white;
-        @include sm() {
-          font-size: 10px;
-        }
       }
     }
   }

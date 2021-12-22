@@ -1,7 +1,10 @@
 import "./Item.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-export default function Item({ url, name, desc, price }) {
+import { useStore } from "../../../Store/hooks";
+import { switchCartBox } from "../../../Store/reducer";
+export default function Item({ url, name, info, price }) {
+  const [state, dispatch] = useStore();
   return (
     <div class="item">
       <div className="item__image">
@@ -17,14 +20,20 @@ export default function Item({ url, name, desc, price }) {
       </div>
       <div class="item__text">
         <h2>{name}</h2>
-        <p>{desc}</p>
+        <p>{info}</p>
       </div>
       <div className="item__shopping">
-        <h3>{price}</h3>
-        <button>
-          <a href="#">
-            <FontAwesomeIcon icon={faShoppingCart} />
-          </a>
+        <h3>{price}$</h3>
+        <button
+          onClick={() => {
+            dispatch(switchCartBox(true));
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faShoppingCart}
+            color="white"
+            style={{ fontSize: "20px" }}
+          />
         </button>
       </div>
     </div>

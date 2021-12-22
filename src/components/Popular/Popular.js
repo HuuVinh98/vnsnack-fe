@@ -20,26 +20,29 @@ export default function Popular({ products }) {
               <a href="">Ricepaper</a>
             </button>
             <button>
-              <a href="">Dried Animal</a>
+              <a href="">Dried</a>
             </button>
           </div>
         </div>
 
         <div className="popular-products">
           <div className="row">
-            {products.map((product, idx) => {
+            {/* {products.map((product, idx) => {
               return (
                 <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12">
                   <Item
                     key={idx}
                     url={product.photos[0].url}
                     name={product.name}
-                    desc="How are you? I'm fine thank you. And you?"
-                    price={product.price + "$"}
+                    price={product.price}
+                    info=""
                   ></Item>
                 </div>
               );
-            })}
+            })} */}
+            <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12">
+              <Item url={mucrim} name="muc rim" price="5" info=""></Item>
+            </div>
           </div>
         </div>
       </div>
