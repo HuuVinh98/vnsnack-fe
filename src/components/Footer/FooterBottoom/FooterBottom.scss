@@ -1,0 +1,38 @@
+@import "../../../grid";
+
+.footer-bottom {
+  background-color: black;
+  margin-top: 10px;
+  padding: 20px 0px;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include xs() {
+      flex-direction: column-reverse;
+    }
+  }
+  p {
+    color: #4b4747;
+    font-size: 18px;
+    @include xs() {
+      font-size: 15px;
+    }
+    @media (max-width: 460px) {
+      font-size: 13px;
+      text-align: center;
+    }
+    span {
+      font-weight: bold;
+    }
+    a {
+      color: #4b4747;
+      &:hover {
+        color: #266cf9;
+      }
+    }
+  }
+  .payment {
+    display: flex;
+  }
+}

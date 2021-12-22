@@ -1,0 +1,47 @@
+@import "../../../grid";
+
+.review {
+  width: 95%;
+  background-color: #f3e37c;
+  padding: 20px 30px;
+  border-bottom-right-radius: 50px;
+  border-top-left-radius: 50px;
+
+  p.review__mess {
+    width: 90%;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+  }
+  .reviewer-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    .reviewer-info__left {
+      width: 30%;
+      img {
+        display: block;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        transition: all 1s;
+        &:hover {
+          transform: rotate(360deg);
+        }
+      }
+    }
+    .reviewer-info__right {
+      width: 70%;
+      @include xs() {
+        align-items: flex-end;
+      }
+      h3 {
+        color: #00a149;
+        @media (max-width: 450px) {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

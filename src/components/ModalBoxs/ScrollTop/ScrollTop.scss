@@ -1,0 +1,35 @@
+@import "../../../grid";
+@keyframes top {
+  to {
+    transform: translateY(-10px);
+  }
+}
+.turn-top-button {
+  background-image: url(../../../images/conmuc.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 150px;
+  //background-color: #f3a738;
+  position: fixed;
+  top: 400px;
+  right: 20px;
+  @include sm() {
+    right: 20px;
+  }
+  z-index: 12;
+  //border-radius: 50%;
+  &:hover {
+    animation: top 1s forwards infinite;
+    a {
+      animation: none;
+    }
+  }
+  a {
+    margin-bottom: 30px;
+    animation: top 1s forwards infinite;
+  }
+}

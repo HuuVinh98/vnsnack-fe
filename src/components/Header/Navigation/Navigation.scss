@@ -1,0 +1,154 @@
+@import "../../../grid";
+@import "../../../flex";
+nav.navigation {
+  display: flex;
+  @include md() {
+    display: none;
+  }
+  justify-content: center;
+  align-items: center;
+  background-color: #f3d34a;
+  width: 42%;
+  height: 50px;
+  position: relative;
+  .circle--left,
+  .circle--right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50%;
+    background-color: #f3d34a;
+    .sub-circle {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: white;
+    }
+  }
+  .circle--left {
+    left: 0;
+    transform: translateX(-50%);
+  }
+  .circle--right {
+    right: 0;
+    transform: translateX(50%);
+    .sub-circle {
+      position: relative;
+      img {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        bottom: 0px;
+        left: -70%;
+        transform: rotate(20deg);
+      }
+    }
+  }
+  .menu {
+    height: 100%;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    > li {
+      height: 100%;
+      padding: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      a,
+      div {
+        font-size: 20px;
+        color: white;
+        i {
+          font-size: 20px;
+        }
+      }
+      &:hover {
+        background-color: #f3a738;
+      }
+      transition: all 1s;
+    }
+
+    .menu_shop {
+      position: relative;
+      transition: all 1s;
+      &:hover {
+        .dropdown {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+      .dropdown {
+        z-index: 11;
+        padding: 20px;
+        min-width: 200px;
+        background-color: white;
+        position: absolute;
+        height: max-content;
+        top: 50px;
+        left: 0;
+        display: none;
+        box-shadow: 1px 2px 5px #00a149;
+        .dropdown__item {
+          &:hover {
+            .drop-right {
+              display: flex;
+            }
+          }
+          width: 100%;
+          padding: 10px;
+          border-bottom: 1px solid #f3e37c;
+          span {
+            color: #00a149;
+          }
+          transition: all 1s;
+          &:hover {
+            transform: translateX(10px);
+          }
+          .drop-right {
+            transition: all 0.5s;
+            display: none;
+            min-width: 600px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: translate(100%, -30%);
+            background-color: white;
+            box-shadow: 1px 2px 5px #00a149;
+            padding: 20px;
+
+            img {
+              width: 250px;
+              height: 400px;
+            }
+            div {
+              width: 45%;
+              h3 {
+                color: #00a149;
+              }
+              .drop-right__menu {
+                width: 100%;
+                margin-top: 20px;
+                ul {
+                  li {
+                    a {
+                      color: #00a149;
+                    }
+                    &:first-child {
+                      font-weight: bold;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

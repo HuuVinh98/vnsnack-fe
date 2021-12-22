@@ -1,0 +1,35 @@
+@import "../../grid";
+.trending
+{
+    padding-bottom: 20px;
+    .container
+    {
+        h2.trending-title 
+        {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 36px;
+            @include sm()
+            {
+                font-size: 24px;
+            }
+        }
+        .owl-nav
+        {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 95%;
+            display: flex;
+            justify-content: space-between;
+            .owl-prev, .owl-next
+            {
+               
+                color:rgb(156, 151, 151);
+                font-size: 50px;  
+                background:none;  
+            }
+        }
+    }
+}

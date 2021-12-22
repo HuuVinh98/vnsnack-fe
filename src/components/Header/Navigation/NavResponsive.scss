@@ -1,0 +1,48 @@
+@import "../../../flex";
+@import "../../../grid";
+
+nav.navigation-responsive {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: max-content;
+  display: none;
+  @include sm() {
+    display: block;
+  }
+  z-index: 1000;
+  background-color: white;
+  border-top: 1px solid #c4c4c4;
+  ul {
+    //width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0px;
+    li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      transition: all 0.5s;
+      div {
+        position: relative;
+        span {
+          position: absolute;
+          top: -5px;
+          left: 18px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: #f3e37c;
+          color: white;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

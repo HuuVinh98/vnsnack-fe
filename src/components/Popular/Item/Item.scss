@@ -1,0 +1,104 @@
+@import "../../../grid";
+.item {
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 10px;
+  width: 90%;
+  border: 1px solid #c4c4c4;
+  border-radius: 10% !important;
+
+  &:hover {
+    .item__image {
+      img {
+        transform: translateX(-50%) scale(1.2);
+      }
+      &::after {
+        background-color: #f3e37c;
+        height: 100%;
+      }
+    }
+  }
+  .item__image {
+    position: relative;
+    width: 100%;
+    .fa-icon {
+      transition: all 0.5s;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 11;
+      &:hover {
+        color: #333;
+      }
+    }
+    img {
+      transition: all 0.3s;
+      width: 80%;
+      position: relative;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      background-color: #f3f2ed;
+      width: 100%;
+      border-radius: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 50%;
+      bottom: 0;
+      z-index: 9;
+      transition: all 0.3s;
+    }
+  }
+  .item__text {
+    text-align: left;
+    margin-top: 30px;
+    h2 {
+      font-size: 20px;
+      color: #333;
+    }
+    h3 {
+      color: red;
+      font-weight: normal;
+    }
+  }
+  .item__shopping {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    h3 {
+      color: #00a419;
+    }
+    button {
+      padding: 10px;
+      background-color: #f3d34a;
+      border: none;
+      border-radius: 10px;
+      width: max-content;
+      @include sm() {
+        width: max-content;
+      }
+      transition: all 0.5s;
+      &:hover {
+        background-color: #00a149;
+      }
+      a {
+        color: white;
+        @include sm() {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+  &:first-child {
+    margin-left: 20px;
+  }
+}

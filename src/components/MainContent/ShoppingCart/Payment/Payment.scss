@@ -1,0 +1,157 @@
+@import "../../../../flex";
+@import "../../../../grid";
+
+.payment {
+  .coupon {
+    margin-top: 20px;
+    p {
+      color: #2c2c2c;
+    }
+    form {
+      border: 1px solid #ebeeee;
+      margin-left: 20px;
+      width: 50%;
+      input,
+      button {
+        padding: 15px;
+        border: none;
+        font-size: 16px;
+      }
+      input {
+        width: 80%;
+      }
+      button {
+        cursor: pointer;
+        border-left: 1px solid #ebeeee;
+        position: relative;
+        width: 20%;
+        background-color: white;
+        span {
+          width: 100%;
+          position: absolute;
+          color: #2c2c2c;
+          z-index: 2;
+        }
+        &:hover {
+          span {
+            color: white;
+          }
+          &::after {
+            width: 100%;
+          }
+        }
+        &::after {
+          width: 0%;
+          height: 100%;
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: block;
+          background-color: #f3e37c;
+          z-index: 1;
+          transition: all 0.5s;
+        }
+      }
+    }
+  }
+  .cost-tax {
+    margin-top: 20px;
+    .cost-tax__left {
+      width: 73%;
+      table {
+        border: 1px solid #ebeeee;
+        tr {
+          td {
+            border: 1px solid #ebeeee;
+            padding: 20px;
+            form {
+              input,
+              select {
+                width: 48%;
+                padding: 20px;
+                margin-bottom: 20px;
+                outline: none;
+                border: 1px solid #ebeeee;
+              }
+            }
+            button {
+              cursor: pointer;
+              padding: 20px;
+              width: 200px;
+              border: 1px solid #333;
+              position: relative;
+              background-color: white;
+              &::after {
+                content: "";
+                width: 0%;
+                height: 100%;
+                z-index: 1;
+                background-color: #f3e37c;
+                display: block;
+                position: absolute;
+                transition: all 0.5s;
+                top: 0;
+                left: 0;
+              }
+              span {
+                color: #2c2c2c;
+                position: absolute;
+                z-index: 2;
+              }
+              &:hover {
+                border-color: #f3e37c;
+                span {
+                  color: white;
+                }
+                &::after {
+                  width: 100%;
+                }
+              }
+            }
+          }
+
+          &:first-child {
+            td {
+              text-align: center;
+              font-size: 18px;
+              color: #2c2c2c;
+            }
+          }
+        }
+      }
+    }
+    .cost-tax__right {
+      width: 25%;
+      table {
+        width: 100%;
+        border: 1px solid #ebeeee;
+        tr {
+          td {
+            border: 1px solid #ebeeee;
+            padding: 20px;
+            p {
+              margin-bottom: 20px;
+            }
+            button {
+              cursor: pointer;
+              width: 100%;
+              padding: 10px 20px;
+              color: white;
+              font-size: 18px;
+              background-color: #f3e37c;
+              border: none;
+            }
+          }
+          &:first-child {
+            td {
+              text-align: center;
+              color: #2c2c2c;
+              font-size: 18px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

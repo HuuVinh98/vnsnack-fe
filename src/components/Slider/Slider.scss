@@ -1,0 +1,80 @@
+@import "../../grid";
+@keyframes shaky {
+  to {
+    transform: translate(-10px, -10px);
+  }
+}
+.slider {
+  width: 100%;
+  height: max-content;
+  //background-image: url("../../images/slide_bg.jpg");
+  // background-color: #f3e37c;
+  // background-image: linear-gradient(45deg, #f3e37c 8%, #f3d34a 95%);
+  background: #cac531; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #f3f9a7,
+    #cac531
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #f3f9a7,
+    #cac531
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  .owl-dots {
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    button.owl-dot.active {
+      span {
+        background-color: #00a149 !important;
+      }
+    }
+  }
+  .owl-nav {
+    position: absolute;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95%;
+    @include md() {
+      width: 98%;
+    }
+    @include sm() {
+      width: 99%;
+    }
+    display: flex;
+    justify-content: space-between;
+    .owl-prev,
+    .owl-next {
+      width: 50px;
+      height: 50px;
+      @include xs() {
+        background: none !important;
+        span {
+          color: white !important;
+        }
+      }
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50% !important;
+      background-color: white !important;
+      transition: all 0.5s;
+      &:hover {
+        background-color: #eea243 !important;
+        span {
+          color: white;
+        }
+      }
+      span {
+        color: black;
+        font-size: 30px;
+      }
+    }
+  }
+}

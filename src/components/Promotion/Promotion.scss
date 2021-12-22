@@ -1,0 +1,15 @@
+@import "../../grid";
+@import "../../flex";
+.promotion {
+  padding: 50px 0;
+  background-color: #fcf8f8;
+  .container {
+    .row {
+      justify-content: space-between;
+      align-items: center;
+      @include md() {
+        justify-content: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+@import "../../../../flex";
+@import "../../../../grid";
+
+.checkout-item {
+  align-items: center;
+  margin-bottom: 20px;
+  &:last-child {
+    margin-bottom: 0px;
+  }
+  .checkout-item__image {
+    width: 60px;
+    height: 75px;
+    border: 1px solid #ebeeee;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    margin-right: 20px;
+  }
+  .checkout-item__info {
+    width: 80%;
+    .infomation {
+      span {
+        padding: 3px 15px;
+        background-color: #f0e4db;
+        border-radius: 40%;
+        width: max-content;
+      }
+    }
+  }
+}

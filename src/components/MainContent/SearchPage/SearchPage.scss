@@ -1,0 +1,47 @@
+@import "../../../flex";
+@import "../../../grid";
+
+$backgrond: white;
+$hover-color: #f3e37c;
+.search-page {
+  width: 100%;
+  min-height: 100vh;
+  .search-page__input {
+    width: 100%;
+    background: $backgrond;
+    opacity: 1;
+    box-shadow: 0px 2px 3px #00a149;
+    .container {
+      form {
+        background-color: #00a149;
+        width: 50%;
+        margin: 30px auto;
+        padding: 15px 30px;
+        border: 1px solid rgb(238, 229, 229);
+        border-radius: 50px;
+        input {
+          width: 90%;
+          font-size: 16px;
+          border: none;
+          background: $backgrond;
+          color: white;
+          background-color: #00a149;
+          &::placeholder {
+            color: white;
+          }
+        }
+        &:hover {
+          border-color: $hover-color;
+        }
+      }
+    }
+  }
+  .search-page__list {
+    margin-top: 50px;
+    .row {
+      .item {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

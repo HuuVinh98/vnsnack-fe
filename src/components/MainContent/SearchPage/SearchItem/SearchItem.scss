@@ -1,0 +1,67 @@
+@import "../../../../grid";
+@import "../../../../flex";
+
+.search-item {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  @include sm() {
+    padding: 5px;
+  }
+  @include xs() {
+    padding: 2px;
+  }
+
+  width: 20%;
+  border: 1px solid #c4c4c4;
+  margin: 5px;
+  border-radius: 5px;
+  height: max-content;
+  background-image: radial-gradient(#f0edf5, #95afec, rgb(122, 123, 236));
+  img {
+    transition: all 0.5s;
+    width: 100%;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  .search-item__info {
+    text-align: center;
+    h2 {
+      font-size: 20px;
+      color: rgb(119, 115, 115);
+      @media screen and (max-width: 635px) {
+        font-size: 12px;
+      }
+    }
+    h3 {
+      color: red;
+      font-weight: normal;
+    }
+  }
+  button {
+    padding: 10px;
+    background-color: #266cf9;
+    border: none;
+    border-radius: 10px;
+    width: 60%;
+    @include sm() {
+      width: max-content;
+    }
+    transition: all 0.5s;
+    &:hover {
+      background-color: red;
+    }
+    a {
+      color: white;
+      @include sm() {
+        font-size: 10px;
+      }
+    }
+  }
+  &:first-child {
+    margin-left: 20px;
+  }
+}

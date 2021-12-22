@@ -1,0 +1,119 @@
+@import "../../../grid";
+@import "../../../flex";
+
+.slide {
+  height: 100%;
+  position: relative;
+  width: 100%;
+  padding: 50px;
+  @media screen and (max-width: 500px) {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+  .slide__text {
+    width: 60%;
+    @media screen and (max-width: 500px) {
+      width: 100%;
+    }
+    animation: shaky 1s infinite alternate;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @include xs() {
+      height: 100px;
+    }
+    p {
+      color: black;
+      text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff,
+        1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+    }
+    h1 {
+      font-size: 36px;
+      color: #00a149;
+      text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff,
+        1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+      @include md() {
+        font-size: 24px;
+      }
+      @include xs() {
+        font-size: 16px;
+      }
+    }
+    button {
+      margin-top: 50px;
+      @include lg() {
+        margin-top: 20px;
+      }
+      @include xs() {
+        margin-top: 10px;
+      }
+      &:hover {
+        a {
+          color: white;
+        }
+      }
+      transition: all 0.5s;
+      width: max-content;
+      @include xs() {
+        padding: 5px;
+      }
+      padding: 20px;
+      background: #ffc222;
+      border: none;
+      border-radius: 5px;
+      a {
+        font-size: 24px;
+        @include xs() {
+          font-size: 16px;
+        }
+        color: #333;
+        font-weight: bold;
+        transition: all 0.5s;
+      }
+
+      margin-left: 50px;
+    }
+  }
+
+  .slide__image {
+    width: 300px;
+    height: 300px;
+    @include sm() {
+      width: 200px;
+      height: 200px;
+    }
+    position: relative;
+    &:hover {
+      &::after {
+        transform: scale(1.2);
+      }
+    }
+    img {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 85%;
+      width: 85%;
+      z-index: 11;
+      &:hover {
+        &::after {
+          transform: scale(1.2);
+        }
+      }
+    }
+    &::after {
+      border-radius: 50%;
+      background-image: radial-gradient(#f1ca1a, #f3e37c, white);
+      transition: all 0.5s;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: "";
+    }
+  }
+}

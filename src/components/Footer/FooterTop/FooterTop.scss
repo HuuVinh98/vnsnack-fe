@@ -1,0 +1,107 @@
+@import "../../../grid";
+@import "../../../flex";
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 50px;
+  @include sm() {
+    flex-direction: column;
+  }
+  .footer-top__left {
+    ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 200px;
+      height: 200px;
+      position: relative;
+
+      li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        z-index: 10;
+        top: 50%;
+        left: 50%;
+        transform: translate(-45%, -50%);
+        img {
+          width: 200px;
+          height: 150px;
+        }
+
+        &:last-child {
+          bottom: 0;
+          transform: translate(-50%, 120%);
+          // background-color: white;
+          width: max-content;
+          height: max-content;
+          padding: 10px;
+          @include xs() {
+            justify-content: center;
+          }
+        }
+        width: 90%;
+        //margin-bottom: 20px;
+        span {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 10px;
+          width: 40px;
+          height: 40px;
+          border: 1px solid #00a149;
+          padding: 10px;
+          border-radius: 50%;
+          transition: all 0.5s;
+          a {
+            color: #00a149;
+          }
+          &:hover {
+            background-color: #00a149;
+            border-color: white;
+            a {
+              color: white;
+              transform: scale(1.2);
+            }
+          }
+        }
+      }
+    }
+  }
+  .footer-top__right {
+    width: 60%;
+    @include sm() {
+      width: 100%;
+      margin-top: 50px;
+    }
+    @include xs() {
+      flex-direction: column;
+    }
+    ul {
+      li {
+        color: black;
+        font-size: 20px;
+        &:first-child {
+          font-size: 24px;
+          font-weight: bold;
+          margin-bottom: 20px;
+          color: #504d4d;
+        }
+        transition: all 0.5s;
+        &:hover {
+          a {
+            color: #00a149;
+          }
+        }
+        a {
+          color: black;
+          font-size: 20px;
+          transition: all 0.5s;
+        }
+      }
+    }
+  }
+}
