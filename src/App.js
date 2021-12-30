@@ -25,18 +25,6 @@ function App() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [showBtn]);
-  //get API
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    async function fetchProducts() {
-      const requestUrl = "http://api.vnsnack.com/product";
-      const response = await fetch(requestUrl);
-      const responseJSON = await response.json();
-      //const { data } = responseJSON;
-      setProducts(responseJSON);
-    }
-    fetchProducts();
-  }, []);
 
   return (
     <Router>
@@ -45,7 +33,7 @@ function App() {
         <CartBox />
         <ColumnMenu />
         <Header />
-        <MainContent abc={products} />
+        <MainContent />
         <Footer />
       </div>
     </Router>

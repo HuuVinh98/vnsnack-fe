@@ -5,13 +5,13 @@ import Popular from "../../Popular/Popular";
 import Reviews from "../../Reviews/Reviews";
 import Menus from "../../Menus/Menus";
 import Video from "../../Video/Video";
-export default function HomePage({ data }) {
+export default function HomePage() {
   return (
     <div className="home-page">
       <Slider />
       <Menus />
       <Promotion />
-      <Popular products={data} />
+      <Popular />
       <Reviews />
       <Video />
     </div>
