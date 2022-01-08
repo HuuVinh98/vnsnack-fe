@@ -3,14 +3,27 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Item from "../../Popular/Item/Item";
 import mucrim from "../../../images/mucrim.png";
 import "./SearchPage.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 export default function SearchPage() {
-  const allProducts = [{ name: "vinh" }, { name: "nhi" }];
+  //get API
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    async function fetchProducts() {
+      const requestUrl = `http://54.179.183.246:8000/category?filter=new`;
+      const response = await fetch(requestUrl);
+      const responseJSON = await response.json();
+      //const { data } = responseJSON;
+      console.log(responseJSON);
+      setProducts(responseJSON);
+    }
+    fetchProducts();
+  }, []);
+
   let [search, setSearch] = useState([]);
   let handleKeyUp = (e) => {
     let press = e;
     if (e) {
-      let searchList = allProducts.filter((val) => {
+      let searchList = products.filter((val) => {
         return val.name.toLocaleLowerCase().includes(press.toLocaleLowerCase());
       });
       setSearch(searchList);

@@ -1,6 +1,7 @@
 import "./Popular.scss";
 import Item from "./Item/Item";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import mucrim from "../../images/mucrim.png";
 
 export default function Popular() {
   //get API
@@ -12,10 +13,11 @@ export default function Popular() {
   };
   useEffect(() => {
     async function fetchProducts() {
-      const requestUrl = `http://api.vnsnack.com/product?filter=${filter}`;
+      const requestUrl = `http://54.179.183.246:8000/category?filter=${filter}`;
       const response = await fetch(requestUrl);
       const responseJSON = await response.json();
       //const { data } = responseJSON;
+      console.log(responseJSON);
       setProducts(responseJSON);
     }
     fetchProducts();
@@ -65,9 +67,9 @@ export default function Popular() {
                 <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12">
                   <Item
                     key={idx}
-                    url={product.photos[0].url}
+                    url={mucrim}
                     name={product.name}
-                    price={product.price}
+                    price={idx + 2}
                     info=""
                   ></Item>
                 </div>
