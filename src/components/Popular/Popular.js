@@ -5,17 +5,21 @@ import { useContext, useEffect, useState } from "react";
 export default function Popular() {
   //get API
   const [products, setProducts] = useState([]);
-  const [sort, setSort] = useState("new");
+  const [filter, setFilter] = useState("new");
+  const handleFilter = (value) => {
+    setFilter(value);
+    console.log(filter);
+  };
   useEffect(() => {
     async function fetchProducts() {
-      const requestUrl = `http://api.vnsnack.com/product?sort=${sort}`;
+      const requestUrl = `http://api.vnsnack.com/product?filter=${filter}`;
       const response = await fetch(requestUrl);
       const responseJSON = await response.json();
       //const { data } = responseJSON;
       setProducts(responseJSON);
     }
     fetchProducts();
-  }, [sort]);
+  }, [filter]);
 
   return (
     <section className="popular">
@@ -24,31 +28,33 @@ export default function Popular() {
           <div className="popular-title__top">
             <h2>Popular dish</h2>
           </div>
-          <div className="popular-title__bottom">
-            <button
-              onClick={() => {
-                setSort("new");
-              }}
-            >
-              <a href="">New</a>
-            </button>
-            <button
-              onClick={() => {
-                setSort("hot");
-              }}
-            >
-              <a href="">Hot</a>
-            </button>
-            <button
-              onClick={() => {
-                setSort("expensive");
-              }}
-            >
-              <a href="">Expensive</a>
-            </button>
-            <button>
-              <a href="">Dried</a>
-            </button>
+          <div className="popular-title__bottom flex j-spaceBeweent">
+            <div className="title__left flex j-spaceBetween">
+              <button>
+                <a href="">Seafood</a>
+              </button>
+              <button>
+                <a href="">Peanut</a>
+              </button>
+              <button>
+                <a href="">Ricepaper</a>
+              </button>
+              <button>
+                <a href="">Dried</a>
+              </button>
+            </div>
+            <div className="title__right">
+              Filter:
+              <select
+                name="Filter"
+                id="filter"
+                onChange={(e) => handleFilter(e.target.value)}
+              >
+                <option value="new">New</option>
+                <option value="hot">Hot</option>
+                <option value="expensive">Expensive</option>
+              </select>
+            </div>
           </div>
         </div>
 
@@ -72,6 +78,9 @@ export default function Popular() {
             </div> */}
           </div>
         </div>
+        <button className="more-products">
+          <a href="/allproducts">More</a>
+        </button>
       </div>
     </section>
   );

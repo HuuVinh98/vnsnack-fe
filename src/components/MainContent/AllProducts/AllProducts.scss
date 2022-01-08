@@ -1,0 +1,43 @@
+@import "../../../flex";
+@import "../../../grid";
+
+.all-products {
+  height: 100vh;
+  margin-top: 50px;
+  .container {
+    .all-products__header {
+      width: 100%;
+      border-top: 1px dashed #00a149;
+      position: relative;
+      div {
+        padding: 10px;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translate(-50%, -50%);
+        background-color: #f3d34a;
+        color: white;
+        border-radius: 10px;
+      }
+    }
+    .all-products__body {
+    }
+    .all-products__footer {
+      margin: 30px 0px;
+      .page-number {
+        min-width: 200px;
+        justify-content: space-around;
+        span {
+          width: 30px;
+          height: 30px;
+          background-color: red;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          color: white;
+          align-items: center;
+        }
+      }
+    }
+  }
+}

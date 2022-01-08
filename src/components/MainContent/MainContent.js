@@ -5,6 +5,7 @@ import Wishlist from "./Wishlist/Wishlist";
 import Checkout from "./Checkout/Checkout";
 import SearchPage from "./SearchPage/SearchPage";
 import { Switch, Route } from "react-router-dom";
+import AllProducts from "./AllProducts/AllProducts";
 export default function MainContent() {
   return (
     <Switch>
@@ -25,6 +26,9 @@ export default function MainContent() {
       </Route>
       <Route path="/search">
         <SearchPage />
+      </Route>
+      <Route path="/allproducts">
+        <AllProducts />
       </Route>
     </Switch>
   );
