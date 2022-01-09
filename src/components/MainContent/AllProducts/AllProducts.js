@@ -7,18 +7,23 @@ import Item from "../../Popular/Item/Item";
 export default function AllProducts() {
   const [pageNumber, setPageNumber] = useState(1);
   const [products, setProducts] = useState([]);
+  const [filter, setFilter] = useState("new");
+  const [categoryId, setCategoryId] = useState(1);
+  const handleFilter = (value) => {
+    setFilter(value);
+  };
   const pages = [1, 2, 3, 4, 5];
   //get API
   useEffect(() => {
     async function fetchProducts() {
-      const requestUrl = `http://api.vnsnack.com/product?take=2&page=${pageNumber}&sort=new`;
+      const requestUrl = `http://api.vnsnack.com/product?take=2&page=${pageNumber}&sort=${filter}&categoryId=${categoryId}`;
       const response = await fetch(requestUrl);
       const responseJSON = await response.json();
       //const { data } = responseJSON;
       setProducts(responseJSON);
     }
     fetchProducts();
-  }, [pageNumber]);
+  }, [pageNumber, filter, categoryId]);
   // const numOfProductInPage = 2;
   // const numOfPages = Math.floor(products.length / numOfProductInPage);
   // const pages = [];
@@ -30,7 +35,7 @@ export default function AllProducts() {
 
   // function
   const handleClickAngleLeft = () => {
-    if (pageNumber) {
+    if (pageNumber > 1) {
       setPageNumber(pageNumber - 1);
     }
   };
@@ -42,11 +47,78 @@ export default function AllProducts() {
   const handleSetPageNumber = (e) => {
     setPageNumber(e);
   };
+  const handleSetCategory = (e) => {
+    setCategoryId(e);
+  };
   return (
     <div className="all-products">
       <div className="container flex f-column a-center">
         <div className="all-products__header">
-          <div>All Products</div>
+          <h4>All Products</h4>
+          <div className="category flex j-spaceBeweent">
+            <div className="category__left flex j-spaceBetween">
+              <button
+                style={
+                  categoryId === 1
+                    ? { color: "white", backgroundColor: "red" }
+                    : {}
+                }
+                onClick={() => {
+                  handleSetCategory(1);
+                }}
+              >
+                Seafood
+              </button>
+              <button
+                style={
+                  categoryId === 6
+                    ? { color: "white", backgroundColor: "red" }
+                    : {}
+                }
+                onClick={() => {
+                  handleSetCategory(6);
+                }}
+              >
+                Peanut
+              </button>
+              <button
+                style={
+                  categoryId === 7
+                    ? { color: "white", backgroundColor: "red" }
+                    : {}
+                }
+                onClick={() => {
+                  handleSetCategory(7);
+                }}
+              >
+                Ricepaper
+              </button>
+              <button
+                style={
+                  categoryId === 8
+                    ? { color: "white", backgroundColor: "red" }
+                    : {}
+                }
+                onClick={() => {
+                  handleSetCategory(8);
+                }}
+              >
+                Dried
+              </button>
+            </div>
+            <div className="category__right">
+              Filter:
+              <select
+                name="Filter"
+                id="filter"
+                onChange={(e) => handleFilter(e.target.value)}
+              >
+                <option value="new">New</option>
+                <option value="hot">Hot</option>
+                <option value="expensive">Expensive</option>
+              </select>
+            </div>
+          </div>
         </div>
         <div className="all-products__body">
           <div className="row">
@@ -94,56 +166,6 @@ export default function AllProducts() {
                 </span>
               );
             })}
-            {/* <span
-              data-id={1}
-              onClick={(e) => {
-                handleSetPageNumber(
-                  e.target.attributes.getNamedItem("data-id").value
-                );
-              }}
-            >
-              1
-            </span>
-            <span
-              data-id={2}
-              onClick={(e) => {
-                handleSetPageNumber(
-                  e.target.attributes.getNamedItem("data-id").value
-                );
-              }}
-            >
-              2
-            </span>
-            <span
-              data-id={3}
-              onClick={(e) => {
-                handleSetPageNumber(
-                  e.target.attributes.getNamedItem("data-id").value
-                );
-              }}
-            >
-              3
-            </span>
-            <span
-              data-id={4}
-              onClick={(e) => {
-                handleSetPageNumber(
-                  e.target.attributes.getNamedItem("data-id").value
-                );
-              }}
-            >
-              4
-            </span>
-            <span
-              data-id={5}
-              onClick={(e) => {
-                handleSetPageNumber(
-                  e.target.attributes.getNamedItem("data-id").value
-                );
-              }}
-            >
-              5
-            </span> */}
           </div>
           <FontAwesomeIcon
             icon={faAngleRight}

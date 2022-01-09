@@ -6,22 +6,21 @@ import mucrim from "../../images/mucrim.png";
 export default function Popular() {
   //get API
   const [products, setProducts] = useState([]);
-  const [filter, setFilter] = useState("new");
-  const handleFilter = (value) => {
-    setFilter(value);
-    console.log(filter);
+  const [categoryId, setCategoryId] = useState(1);
+  const handleSetCategory = (value) => {
+    setCategoryId(value);
   };
   useEffect(() => {
     async function fetchProducts() {
-      const requestUrl = `http://api.vnsnack.com/category?filter=${filter}`;
+      const requestUrl = `http://api.vnsnack.com/product?take=8&sort=hot&categoryId=${categoryId}`;
       const response = await fetch(requestUrl);
       const responseJSON = await response.json();
       //const { data } = responseJSON;
-      console.log(responseJSON);
+
       setProducts(responseJSON);
     }
     fetchProducts();
-  }, [filter]);
+  }, [categoryId]);
 
   return (
     <section className="popular">
@@ -31,32 +30,55 @@ export default function Popular() {
             <h2>Popular dish</h2>
           </div>
           <div className="popular-title__bottom flex j-spaceBeweent">
-            <div className="title__left flex j-spaceBetween">
-              <button>
-                <a href="">Seafood</a>
-              </button>
-              <button>
-                <a href="">Peanut</a>
-              </button>
-              <button>
-                <a href="">Ricepaper</a>
-              </button>
-              <button>
-                <a href="">Dried</a>
-              </button>
-            </div>
-            <div className="title__right">
-              Filter:
-              <select
-                name="Filter"
-                id="filter"
-                onChange={(e) => handleFilter(e.target.value)}
-              >
-                <option value="new">New</option>
-                <option value="hot">Hot</option>
-                <option value="expensive">Expensive</option>
-              </select>
-            </div>
+            <button
+              style={
+                categoryId === 1
+                  ? { color: "white", backgroundColor: "red" }
+                  : {}
+              }
+              onClick={() => {
+                handleSetCategory(1);
+              }}
+            >
+              Seafood
+            </button>
+            <button
+              style={
+                categoryId === 6
+                  ? { color: "white", backgroundColor: "red" }
+                  : {}
+              }
+              onClick={() => {
+                handleSetCategory(6);
+              }}
+            >
+              Peanut
+            </button>
+            <button
+              style={
+                categoryId === 7
+                  ? { color: "white", backgroundColor: "red" }
+                  : {}
+              }
+              onClick={() => {
+                handleSetCategory(7);
+              }}
+            >
+              Ricepaper
+            </button>
+            <button
+              data-id={8}
+              style={
+                categoryId === 8
+                  ? { color: "white", backgroundColor: "red" }
+                  : {}
+              }
+              onClick={() => {
+                handleSetCategory(8);
+              }}
+            >
+              Dried
+            </button>
           </div>
         </div>
 
