@@ -159,21 +159,16 @@ export default function MenuResponsive() {
           <a href="#">Contact</a>
         </li>
         <li class="media">
-          <ul class="flex j-spaceBetween a-center">
+          <ul class="flex j-center a-center">
             <li class="flex j-center a-center">
               <FontAwesomeIcon icon={faFacebookF} color="white" />
             </li>
-            <li class="flex j-center a-center">
-              <FontAwesomeIcon icon={faTwitter} color="white" />
-            </li>
+
             <li class="flex j-center a-center">
               <FontAwesomeIcon icon={faYoutube} color="white" />
             </li>
             <li class="flex j-center a-center">
               <FontAwesomeIcon icon={faInstagram} color="white" />
-            </li>
-            <li class="flex j-center a-center">
-              <FontAwesomeIcon icon={faLinkedinIn} color="white" />
             </li>
           </ul>
         </li>

@@ -3,14 +3,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import CartBoxItem from "./CartBoxItem/CartBoxItem";
 import mucrim from "../../../images/mucrim.png";
+import { useStore } from "../../../Store/hooks";
+import { switchCartBox } from "../../../Store/reducer";
 export default function CartBox() {
+  const [state, dispatch] = useStore();
+  const a = state;
   return (
-    <div className="cart-box flex f-column">
+    <div
+      className="cart-box flex f-column"
+      style={
+        state.showCartBox == true
+          ? { transform: "translateX(0%)" }
+          : { transform: "translateX(105%)" }
+      }
+    >
       <div className="cart-box__header flex j-spaceBetween">
         <span>
           Cart(<span id="items-in-cart">0</span>)
         </span>
-        <span className="close-cart">
+        <span
+          className="close-cart"
+          onClick={() => {
+            dispatch(switchCartBox(false));
+          }}
+        >
           <FontAwesomeIcon icon={faTimes} />
         </span>
       </div>

@@ -38,14 +38,7 @@ export default function FooterTop() {
                 />
               </a>
             </span>
-            <span>
-              <a href="">
-                <FontAwesomeIcon
-                  icon={faTwitter}
-                  style={{ fontSize: "20px" }}
-                />
-              </a>
-            </span>
+
             <span>
               <a href="">
                 {" "}
