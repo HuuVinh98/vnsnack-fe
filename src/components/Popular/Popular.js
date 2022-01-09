@@ -13,7 +13,7 @@ export default function Popular() {
   };
   useEffect(() => {
     async function fetchProducts() {
-      const requestUrl = `http://54.179.183.246:8000/category?filter=${filter}`;
+      const requestUrl = `http://api.vnsnack.com/category?filter=${filter}`;
       const response = await fetch(requestUrl);
       const responseJSON = await response.json();
       //const { data } = responseJSON;

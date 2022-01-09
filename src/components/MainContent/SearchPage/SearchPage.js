@@ -9,7 +9,7 @@ export default function SearchPage() {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     async function fetchProducts() {
-      const requestUrl = `http://54.179.183.246:8000/category?filter=new`;
+      const requestUrl = `http://api.vnsnack.com/category?filter=new`;
       const response = await fetch(requestUrl);
       const responseJSON = await response.json();
       //const { data } = responseJSON;
