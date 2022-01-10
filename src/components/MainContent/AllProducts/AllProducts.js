@@ -127,10 +127,14 @@ export default function AllProducts() {
                 <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12">
                   <Item
                     key={idx}
-                    url={mucrim}
+                    url={
+                      product.photos.filter(
+                        (val) => val.isThumbnail === true
+                      )[0].url
+                    }
                     name={product.name}
-                    price={idx + 2}
-                    info=""
+                    price={product.price}
+                    info={""}
                   ></Item>
                 </div>
               );
