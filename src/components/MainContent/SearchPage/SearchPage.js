@@ -9,7 +9,7 @@ export default function SearchPage() {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     async function fetchProducts() {
-      const requestUrl = `http://api.vnsnack.com/category?filter=new`;
+      const requestUrl = `http://api.vnsnack.com/product?sort=new`;
       const response = await fetch(requestUrl);
       const responseJSON = await response.json();
       //const { data } = responseJSON;
@@ -57,10 +57,12 @@ export default function SearchPage() {
               <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <Item
                   key={idx}
-                  url={mucrim}
+                  url={
+                    value.photos.filter((val) => val.isThumbnail === true)[0]
+                      .url
+                  }
                   name={value.name}
-                  desc="How are you? I'm fine thank you. And you?"
-                  price="$30.00"
+                  price={value.price}
                 ></Item>
               </div>
             );
