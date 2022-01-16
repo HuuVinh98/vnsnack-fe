@@ -7,7 +7,7 @@ import { selectedProduct } from "../../../Store/reducer";
 import { Link } from "react-router-dom";
 export default function Item({ props }) {
   const [state, dispatch] = useStore();
-
+  console.log("day la props:", props);
   return (
     <div class="item">
       <div className="item__image">
@@ -17,18 +17,18 @@ export default function Item({ props }) {
           color="#c4c4c4"
           style={{ fontSize: "25px" }}
         />
-        <Link
-          to={"/product"}
+        <a
+          href={`/product/${props.id}`}
           onClick={() => {
             dispatch(selectedProduct(props));
           }}
         >
           <img
-            // src={props.photos.filter((val) => val.isThumbnail === true)[0].url}
+            src={props.photos.find((val) => val.isThumbnail === true).url}
             alt=""
             style={{ width: "200px", height: "200px" }}
           />
-        </Link>
+        </a>
       </div>
       <div class="item__text">
         <h2>{props.name}</h2>

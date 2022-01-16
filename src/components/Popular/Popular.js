@@ -15,6 +15,7 @@ export default function Popular() {
       const response = await fetch(requestUrl);
       const responseJSON = await response.json();
       //const { data } = responseJSON;
+      console.log("aabb", responseJSON);
       setProducts(responseJSON);
     }
     fetchProducts();

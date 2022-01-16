@@ -12,7 +12,7 @@ export default function MainContent() {
       <Route path="/" exact>
         <HomePage />
       </Route>
-      <Route path="/product/">
+      <Route path="/product/:id">
         <DetailPage />
       </Route>
       <Route path="/cart">

@@ -16,46 +16,26 @@ export default function MainProduct({ props }) {
   return (
     <div class="main-product">
       <div class="main-product__left">
-        <OwlCarousel
-          items={1}
-          className="owl-theme"
-          responsiveClass
-          loop
-          nav
-          margin={8}
-          autoPlay={true}
-          autoplayTimeout={2000}
-        >
-          {props.photos
-            .filter((val) => {
-              return val.isThumbnail === false;
-            })
-            .map((val, idx) => {
+        {props.photos && (
+          <OwlCarousel
+            items={1}
+            className="owl-theme"
+            responsiveClass
+            loop
+            nav
+            margin={8}
+            autoPlay={true}
+            autoplayTimeout={2000}
+          >
+            {props.photos.map((val, idx) => {
               return (
                 <div>
-                  <img src={val.url} alt="" />
+                  <img src={val.url} alt={val.name} />
                 </div>
               );
             })}
-          {/* <div>
-            <img src={gallery4} alt="" />
-          </div>
-          <div>
-            <img src={gallery4} alt="" />
-          </div>
-          <div>
-            <img src={gallery4} alt="" />
-          </div>
-          <div>
-            <img src={gallery4} alt="" />
-          </div>
-          <div>
-            <img src={gallery4} alt="" />
-          </div>
-          <div>
-            <img src={gallery4} alt="" />
-          </div> */}
-        </OwlCarousel>
+          </OwlCarousel>
+        )}
       </div>
       <div class="main-product__right">
         <div class="right-top">

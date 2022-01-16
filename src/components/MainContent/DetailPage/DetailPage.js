@@ -8,10 +8,34 @@ import MainProduct from "./MainProduct/MainProduct";
 import Item from "../../Popular/Item/Item";
 import "./DetailPage.scss";
 import { useStore } from "../../../Store/hooks";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 export default function DetailPage() {
   const [state, dispatch] = useStore();
-  console.log(state);
-  //const a = state;
+  console.log("day la state", state);
+  console.log("day la id", state.selectedProduct);
+  //
+  //get API
+  const [product, setProduct] = useState({});
+  const { id } = useParams();
+  console.log("id nè", id);
+  useEffect(() => {
+    async function fetchProducts() {
+      const requestUrl = `http://api.vnsnack.com/product/${id}`;
+      console.log("quan que:", id);
+      const response = await fetch(requestUrl);
+
+      console.log("day la response", response);
+      const responseJSON = await response.json();
+      //const { data } = responseJSON;
+      console.log("xyz", responseJSON);
+
+      setProduct(responseJSON);
+      console.log("day la product:", product);
+    }
+    fetchProducts();
+  }, [id]);
+
   return (
     <div className="detail-page">
       <div class="product-path">
@@ -25,13 +49,13 @@ export default function DetailPage() {
             <FontAwesomeIcon icon={faAngleRight} color="blue" />
           </a>
           <a href="#">
-            <span>{state.selectedProduct.name}</span>
+            <span>{product.name}</span>
           </a>
         </div>
       </div>
       <div class="product-detail">
         <div class="container">
-          <MainProduct props={state.selectedProduct}></MainProduct>
+          <MainProduct props={product}></MainProduct>
 
           <div class="related-products">
             <div class="title">
@@ -40,7 +64,7 @@ export default function DetailPage() {
                 There are many variations of passages of Lorem Ipsum available
               </p>
             </div>
-            <div class="owl-carousel">
+            {/* <div class="owl-carousel">
               <OwlCarousel
                 items={5}
                 className="owl-theme"
@@ -67,43 +91,9 @@ export default function DetailPage() {
                 autoPlay={true}
                 autoplayTimeout={2000}
               >
-                <Item
-                  name="Rice paper mix"
-                  desc="How are you? I'm fine, thank you. And you?"
-                  url={mucrim}
-                ></Item>
-                <Item
-                  name="Rice paper mix"
-                  desc="How are you? I'm fine, thank you. And you?"
-                  url={mucrim}
-                ></Item>
-                <Item
-                  name="Rice paper mix"
-                  desc="How are you? I'm fine, thank you. And you?"
-                  url={mucrim}
-                ></Item>
-                <Item
-                  name="Rice paper mix"
-                  desc="How are you? I'm fine, thank you. And you?"
-                  url={mucrim}
-                ></Item>
-                <Item
-                  name="Rice paper mix"
-                  desc="How are you? I'm fine, thank you. And you?"
-                  url={mucrim}
-                ></Item>
-                <Item
-                  name="Rice paper mix"
-                  desc="How are you? I'm fine, thank you. And you?"
-                  url={mucrim}
-                ></Item>
-                <Item
-                  name="Rice paper mix"
-                  desc="How are you? I'm fine, thank you. And you?"
-                  url={mucrim}
-                ></Item>
+                <Item props={product}></Item>
               </OwlCarousel>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
