@@ -7,7 +7,11 @@ import mucrim from "../../../images/mucrim.png";
 import MainProduct from "./MainProduct/MainProduct";
 import Item from "../../Popular/Item/Item";
 import "./DetailPage.scss";
+import { useStore } from "../../../Store/hooks";
 export default function DetailPage() {
+  const [state, dispatch] = useStore();
+  console.log(state);
+  //const a = state;
   return (
     <div className="detail-page">
       <div class="product-path">
@@ -21,25 +25,13 @@ export default function DetailPage() {
             <FontAwesomeIcon icon={faAngleRight} color="blue" />
           </a>
           <a href="#">
-            <span>Rice paper mix</span>
+            <span>{state.selectedProduct.name}</span>
           </a>
         </div>
       </div>
       <div class="product-detail">
         <div class="container">
-          <MainProduct
-            desc="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab fuga
-          enim ipsam sed animi illum, officia dolorum ullam tenetur nihil
-          voluptatibus aliquam ratione fugit vitae dignissimos veniam. Error,
-          numquam? Ipsam!"
-            name="Rice paper mix"
-            price="$30.00"
-            weight="100g"
-            material="egg, ricepaper, mango,chilli,.."
-            origin="Vietnam"
-            mfg="2/12/2021"
-            exp="2 months"
-          ></MainProduct>
+          <MainProduct props={state.selectedProduct}></MainProduct>
 
           <div class="related-products">
             <div class="title">

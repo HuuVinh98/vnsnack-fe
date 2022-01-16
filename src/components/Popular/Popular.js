@@ -1,7 +1,6 @@
 import "./Popular.scss";
 import Item from "./Item/Item";
 import { useEffect, useState } from "react";
-import mucrim from "../../images/mucrim.png";
 
 export default function Popular() {
   //get API
@@ -16,7 +15,6 @@ export default function Popular() {
       const response = await fetch(requestUrl);
       const responseJSON = await response.json();
       //const { data } = responseJSON;
-
       setProducts(responseJSON);
     }
     fetchProducts();
@@ -87,17 +85,7 @@ export default function Popular() {
             {products.map((product, idx) => {
               return (
                 <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                  <Item
-                    key={idx}
-                    url={
-                      product.photos.filter((val) => {
-                        return val.isThumbnail === true;
-                      })[0].url
-                    }
-                    name={product.name}
-                    price={product.price}
-                    info=""
-                  ></Item>
+                  <Item key={idx} props={product}></Item>
                 </div>
               );
             })}

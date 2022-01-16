@@ -13,7 +13,6 @@ export default function SearchPage() {
       const response = await fetch(requestUrl);
       const responseJSON = await response.json();
       //const { data } = responseJSON;
-      console.log(responseJSON);
       setProducts(responseJSON);
     }
     fetchProducts();

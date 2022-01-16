@@ -58,20 +58,7 @@
       @include sm() {
         align-items: center;
       }
-      table.product-info {
-        padding: 20px 0px;
-        tr {
-          td {
-            font-weight: bolder;
-            padding: 0 !important;
-
-            &:first-child {
-              width: 150px;
-              color: #00a149;
-            }
-          }
-        }
-      }
+      
       .product-quantity {
         width: max-content;
         display: flex;

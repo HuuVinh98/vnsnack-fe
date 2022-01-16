@@ -8,19 +8,11 @@ import {
   faMinus,
   faPlus,
   faHeart,
+  faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import gallery4 from "../../../../images/ricepapermix.jpg";
 
-export default function ProductInfo({
-  desc,
-  name,
-  price,
-  weight,
-  material,
-  origin,
-  exp,
-  mfg,
-}) {
+export default function MainProduct({ props }) {
   return (
     <div class="main-product">
       <div class="main-product__left">
@@ -34,7 +26,18 @@ export default function ProductInfo({
           autoPlay={true}
           autoplayTimeout={2000}
         >
-          <div>
+          {props.photos
+            .filter((val) => {
+              return val.isThumbnail === false;
+            })
+            .map((val, idx) => {
+              return (
+                <div>
+                  <img src={val.url} alt="" />
+                </div>
+              );
+            })}
+          {/* <div>
             <img src={gallery4} alt="" />
           </div>
           <div>
@@ -51,38 +54,17 @@ export default function ProductInfo({
           </div>
           <div>
             <img src={gallery4} alt="" />
-          </div>
+          </div> */}
         </OwlCarousel>
       </div>
       <div class="main-product__right">
         <div class="right-top">
-          <h2>{name}</h2>
-          <h3>{price}</h3>
+          <h2>{props.name}</h2>
+          <h3>${props.price}</h3>
         </div>
         <div class="right-bot">
-          <p>{desc}</p>
-          <table class="product-info">
-            <tr>
-              <td>Weight:</td>
-              <td>{weight}</td>
-            </tr>
-            <tr>
-              <td>Meterial:</td>
-              <td>{material}</td>
-            </tr>
-            <tr>
-              <td>Origin:</td>
-              <td>{origin}</td>
-            </tr>
-            <tr>
-              <td>MFG:</td>
-              <td>{mfg}</td>
-            </tr>
-            <tr>
-              <td>EXP:</td>
-              <td>{exp}</td>
-            </tr>
-          </table>
+          <p>{props.desc}</p>
+
           <div class="product-quantity">
             <div class="quantity flex">
               <span>

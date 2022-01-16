@@ -7,7 +7,7 @@ import { useStore } from "../../../Store/hooks";
 import { switchCartBox } from "../../../Store/reducer";
 export default function CartBox() {
   const [state, dispatch] = useStore();
-  const a = state;
+  //const a = state;
   return (
     <div
       className="cart-box flex f-column"

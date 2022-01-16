@@ -3,8 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { useStore } from "../../../Store/hooks";
 import { switchCartBox } from "../../../Store/reducer";
-export default function Item({ url, name, info, price }) {
+import { selectedProduct } from "../../../Store/reducer";
+import { Link } from "react-router-dom";
+export default function Item({ props }) {
   const [state, dispatch] = useStore();
+
   return (
     <div class="item">
       <div className="item__image">
@@ -14,16 +17,24 @@ export default function Item({ url, name, info, price }) {
           color="#c4c4c4"
           style={{ fontSize: "25px" }}
         />
-        <a href="/product">
-          <img src={url} alt="" style={{ width: "200px", height: "200px" }} />
-        </a>
+        <Link
+          to={"/product"}
+          onClick={() => {
+            dispatch(selectedProduct(props));
+          }}
+        >
+          <img
+            // src={props.photos.filter((val) => val.isThumbnail === true)[0].url}
+            alt=""
+            style={{ width: "200px", height: "200px" }}
+          />
+        </Link>
       </div>
       <div class="item__text">
-        <h2>{name}</h2>
-        <p>{info}</p>
+        <h2>{props.name}</h2>
       </div>
       <div className="item__shopping">
-        <h3>{price}$</h3>
+        <h3>{props.price}$</h3>
         <button
           onClick={() => {
             dispatch(switchCartBox(true));
