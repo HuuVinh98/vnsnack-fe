@@ -3,14 +3,7 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleRight,
-  faMinus,
-  faPlus,
-  faHeart,
-  faSearch,
-} from "@fortawesome/free-solid-svg-icons";
-import gallery4 from "../../../../images/ricepapermix.jpg";
+import { faMinus, faPlus, faHeart } from "@fortawesome/free-solid-svg-icons";
 
 export default function MainProduct({ props }) {
   return (
@@ -43,7 +36,7 @@ export default function MainProduct({ props }) {
           <h3>${props.price}</h3>
         </div>
         <div class="right-bot">
-          <p>{props.desc}</p>
+          <p>{props.description}</p>
 
           <div class="product-quantity">
             <div class="quantity flex">

@@ -1,12 +1,12 @@
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SearchItem from "./SearchItem/SearchItem";
 import Item from "../../Popular/Item/Item";
-import mucrim from "../../../images/mucrim.png";
 import "./SearchPage.scss";
 import { useState, useEffect } from "react";
 export default function SearchPage() {
-  //get API
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]); // chứa tất cả sản phẩm
+  // lấy tất cả sản phẩm về
   useEffect(() => {
     async function fetchProducts() {
       const requestUrl = `http://api.vnsnack.com/product?sort=new`;
@@ -18,15 +18,18 @@ export default function SearchPage() {
     fetchProducts();
   }, []);
 
-  let [search, setSearch] = useState([]);
+  let [search, setSearch] = useState([]); // chứa các sản phẩm phù hợp với từ khoá
+
+  //kiểm tra trùng khớp giữa từ khoá và tên sản phẩm
   let handleKeyUp = (e) => {
     let press = e;
-    if (e) {
+    if (press !== "") {
       let searchList = products.filter((val) => {
         return val.name.toLocaleLowerCase().includes(press.toLocaleLowerCase());
       });
       setSearch(searchList);
-      console.log(search);
+    } else {
+      setSearch([]);
     }
   };
   return (
@@ -54,15 +57,7 @@ export default function SearchPage() {
           {search.map((value, idx) => {
             return (
               <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <Item
-                  key={idx}
-                  url={
-                    value.photos.filter((val) => val.isThumbnail === true)[0]
-                      .url
-                  }
-                  name={value.name}
-                  price={value.price}
-                ></Item>
+                <Item props={value}></Item>
               </div>
             );
           })}

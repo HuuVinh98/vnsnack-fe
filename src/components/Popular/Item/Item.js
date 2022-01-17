@@ -6,8 +6,8 @@ import { switchCartBox } from "../../../Store/reducer";
 import { selectedProduct } from "../../../Store/reducer";
 import { Link } from "react-router-dom";
 export default function Item({ props }) {
-  const [state, dispatch] = useStore();
-  console.log("day la props:", props);
+  const [state, dispatch] = useStore(); // dùng để show/hide cart box
+
   return (
     <div class="item">
       <div className="item__image">
@@ -17,12 +17,7 @@ export default function Item({ props }) {
           color="#c4c4c4"
           style={{ fontSize: "25px" }}
         />
-        <a
-          href={`/product/${props.id}`}
-          onClick={() => {
-            dispatch(selectedProduct(props));
-          }}
-        >
+        <a href={`/product/${props.id}`}>
           <img
             src={props.photos.find((val) => val.isThumbnail === true).url}
             alt=""

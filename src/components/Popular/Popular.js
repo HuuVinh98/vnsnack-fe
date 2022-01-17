@@ -1,21 +1,23 @@
 import "./Popular.scss";
 import Item from "./Item/Item";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Popular() {
-  //get API
-  const [products, setProducts] = useState([]);
-  const [categoryId, setCategoryId] = useState(1);
+  const [products, setProducts] = useState([]); // chứa tất cả sản phẩm tìm được
+  const [categoryId, setCategoryId] = useState(1); // state để thay đổi category
+
+  // hàm set lại category
   const handleSetCategory = (value) => {
     setCategoryId(value);
   };
+
+  // get api theo category bằng id
   useEffect(() => {
     async function fetchProducts() {
       const requestUrl = `http://api.vnsnack.com/product?take=8&sort=hot&categoryId=${categoryId}`;
       const response = await fetch(requestUrl);
       const responseJSON = await response.json();
-      //const { data } = responseJSON;
-      console.log("aabb", responseJSON);
       setProducts(responseJSON);
     }
     fetchProducts();
@@ -90,13 +92,10 @@ export default function Popular() {
                 </div>
               );
             })}
-            {/* <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12">
-              <Item url={mucrim} name="muc rim" price="5" info=""></Item>
-            </div> */}
           </div>
         </div>
         <button className="more-products">
-          <a href="/allproducts">More</a>
+          <Link to={"/allproducts"}>More</Link>
         </button>
       </div>
     </section>
