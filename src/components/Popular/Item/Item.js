@@ -21,7 +21,7 @@ export default function Item({ props }) {
         <a href={`/product/${props.id}`}>
           <img
             src={
-              props.photos.length > 0
+              props.photos.find((val) => val.isThumbnail === true)
                 ? props.photos.find((val) => val.isThumbnail === true).url
                 : defaultImage
             }

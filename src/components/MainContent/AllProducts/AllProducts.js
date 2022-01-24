@@ -15,7 +15,7 @@ export default function AllallProducts() {
   //get API
   useEffect(() => {
     async function fetchallProducts() {
-      const requestUrl = `http://api.vnsnack.com/product?take=2&page=${pageNumber}&sort=${filter}&categoryId=${categoryId}`;
+      const requestUrl = `http://api.vnsnack.com/product?take=10&page=${pageNumber}&sort=${filter}&categoryId=${categoryId}`;
       const response = await fetch(requestUrl);
       const responseJSON = await response.json();
 

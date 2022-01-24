@@ -9,7 +9,20 @@ export default function MainProduct({ props }) {
   return (
     <div class="main-product">
       <div class="main-product__left">
-        {props.photos.length > 0 ? (
+        {props.photos == undefined || props.photos.length == 0 ? (
+          <OwlCarousel
+            items={1}
+            className="owl-theme"
+            responsiveClass
+            loop
+            nav
+            margin={8}
+            autoPlay={true}
+            autoplayTimeout={2000}
+          >
+            <img src={defaultImage} />
+          </OwlCarousel>
+        ) : (
           <OwlCarousel
             items={1}
             className="owl-theme"
@@ -23,23 +36,10 @@ export default function MainProduct({ props }) {
             {props.photos.map((val, idx) => {
               return (
                 <div>
-                  <img src={val.url} alt={val.name} />
+                  <img src={val.url ? val.url : defaultImage} alt={val.name} />
                 </div>
               );
             })}
-          </OwlCarousel>
-        ) : (
-          <OwlCarousel
-            items={1}
-            className="owl-theme"
-            responsiveClass
-            loop
-            nav
-            margin={8}
-            autoPlay={true}
-            autoplayTimeout={2000}
-          >
-            <img src={defaultImage} />
           </OwlCarousel>
         )}
       </div>
