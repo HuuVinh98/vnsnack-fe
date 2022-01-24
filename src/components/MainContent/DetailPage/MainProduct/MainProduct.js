@@ -4,12 +4,12 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus, faHeart } from "@fortawesome/free-solid-svg-icons";
-
+import defaultImage from "../../../../images/default-image.png";
 export default function MainProduct({ props }) {
   return (
     <div class="main-product">
       <div class="main-product__left">
-        {props.photos && (
+        {props.photos.length > 0 ? (
           <OwlCarousel
             items={1}
             className="owl-theme"
@@ -27,6 +27,19 @@ export default function MainProduct({ props }) {
                 </div>
               );
             })}
+          </OwlCarousel>
+        ) : (
+          <OwlCarousel
+            items={1}
+            className="owl-theme"
+            responsiveClass
+            loop
+            nav
+            margin={8}
+            autoPlay={true}
+            autoplayTimeout={2000}
+          >
+            <img src={defaultImage} />
           </OwlCarousel>
         )}
       </div>

@@ -5,6 +5,7 @@ import { useStore } from "../../../Store/hooks";
 import { switchCartBox } from "../../../Store/reducer";
 import { selectedProduct } from "../../../Store/reducer";
 import { Link } from "react-router-dom";
+import defaultImage from "../../../images/default-image.png";
 export default function Item({ props }) {
   const [state, dispatch] = useStore(); // dùng để show/hide cart box
 
@@ -19,10 +20,27 @@ export default function Item({ props }) {
         />
         <a href={`/product/${props.id}`}>
           <img
-            src={props.photos.find((val) => val.isThumbnail === true).url}
+            src={
+              props.photos.length > 0
+                ? props.photos.find((val) => val.isThumbnail === true).url
+                : defaultImage
+            }
             alt=""
             style={{ width: "200px", height: "200px" }}
           />
+          {/* {props.photos.length > 0 ? (
+            <img
+              src={props.photos.find((val) => val.isThumbnail === true).url}
+              alt=""
+              style={{ width: "200px", height: "200px" }}
+            />
+          ) : (
+            <img
+              src={defaultImage}
+              alt=""
+              style={{ width: "200px", height: "200px" }}
+            />
+          )} */}
         </a>
       </div>
       <div class="item__text">
