@@ -5,6 +5,8 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus, faHeart } from "@fortawesome/free-solid-svg-icons";
 import defaultImage from "../../../../images/default-image.png";
+import ReactHtmlParser from "react-html-parser";
+
 export default function MainProduct({ props }) {
   return (
     <div class="main-product">
@@ -49,7 +51,7 @@ export default function MainProduct({ props }) {
           <h3>${props.price}</h3>
         </div>
         <div class="right-bot">
-          <p>{props.description}</p>
+          <p>{ReactHtmlParser(props.description)}</p>
 
           <div class="product-quantity">
             <div class="quantity flex">

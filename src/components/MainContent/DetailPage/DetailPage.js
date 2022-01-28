@@ -3,7 +3,6 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
-
 import MainProduct from "./MainProduct/MainProduct";
 import Item from "../../Popular/Item/Item";
 import "./DetailPage.scss";
@@ -14,10 +13,10 @@ export default function DetailPage() {
   const { id } = useParams(); //id sản phẩm được chọn
   const [product, setProduct] = useState({}); // sản phẩm được chọn
   const [related, setRelated] = useState([]); // các sản phẩm liên quan
-
+  const http = "http://54.179.249.114:8000/";
   // lấy api sản phẩm được chọn
   useEffect(() => {
-    fetch(`http://api.vnsnack.com/product/${id}`)
+    fetch(`${http}product/${id}`)
       .then((res) => res.json())
       .then((product) => setProduct(product));
   }, [id]);
@@ -31,7 +30,7 @@ export default function DetailPage() {
   }
   // lấy ra các sản phẩm liên quan dựa trên category id
   useEffect(() => {
-    fetch(`http://api.vnsnack.com/product?sort=new&categoryId=${categoryId}`)
+    fetch(`${http}product?sort=new&categoryId=${categoryId}`)
       .then((res) => res.json())
       .then((related) => setRelated(related));
   }, [categoryId]);

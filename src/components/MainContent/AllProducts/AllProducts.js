@@ -3,6 +3,10 @@ import "./AllProducts.scss";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import Item from "../../Popular/Item/Item";
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+import http from "../../../Store/Variable";
 export default function AllallProducts() {
   const [pageNumber, setPageNumber] = useState(1);
   const [allProducts, setAllProducts] = useState([]);
@@ -11,11 +15,20 @@ export default function AllallProducts() {
   const handleFilter = (value) => {
     setFilter(value);
   };
-  const pages = [1, 2, 3, 4, 5];
-  //get API
+
+  const pages = [1, 2, 3, 4, 5]; // số trang
+
+  const [categoryIdList, setCategoryIdList] = useState([]); //danh sách category ID
+  //lấy danh sách category ID
+  useEffect(() => {
+    fetch(`${http}category`)
+      .then((res) => res.json())
+      .then((categoryIdList) => setCategoryIdList(categoryIdList));
+  }, []);
+  //lấy sản phẩm
   useEffect(() => {
     async function fetchallProducts() {
-      const requestUrl = `http://api.vnsnack.com/product?take=10&page=${pageNumber}&sort=${filter}&categoryId=${categoryId}`;
+      const requestUrl = `${http}product?take=10&page=${pageNumber}&sort=${filter}&categoryId=${categoryId}`;
       const response = await fetch(requestUrl);
       const responseJSON = await response.json();
 
@@ -37,64 +50,50 @@ export default function AllallProducts() {
   const handleSetPageNumber = (e) => {
     setPageNumber(e);
   };
-  const handleSetCategory = (e) => {
-    setCategoryId(e);
+  const handleSetCategory = (value) => {
+    setCategoryId(value);
   };
   return (
     <div className="all-products">
       <div className="container flex f-column a-center">
         <div className="all-products__header">
           <h4>All allProducts</h4>
-          <div className="category flex j-spaceBeweent">
+          <div className="category flex j-spaceBeween">
             <div className="category__left flex j-spaceBetween">
-              <button
-                style={
-                  categoryId === 1
-                    ? { color: "white", backgroundColor: "red" }
-                    : {}
-                }
-                onClick={() => {
-                  handleSetCategory(1);
-                }}
-              >
-                Seafood
-              </button>
-              <button
-                style={
-                  categoryId === 6
-                    ? { color: "white", backgroundColor: "red" }
-                    : {}
-                }
-                onClick={() => {
-                  handleSetCategory(6);
-                }}
-              >
-                Peanut
-              </button>
-              <button
-                style={
-                  categoryId === 7
-                    ? { color: "white", backgroundColor: "red" }
-                    : {}
-                }
-                onClick={() => {
-                  handleSetCategory(7);
-                }}
-              >
-                Ricepaper
-              </button>
-              <button
-                style={
-                  categoryId === 8
-                    ? { color: "white", backgroundColor: "red" }
-                    : {}
-                }
-                onClick={() => {
-                  handleSetCategory(8);
-                }}
-              >
-                Dried
-              </button>
+              {categoryIdList && (
+                <OwlCarousel
+                  items={4}
+                  responsive={{
+                    0: { items: 2 },
+                    400: { items: 3 },
+                    992: { items: 4 },
+                  }}
+                  className="owl-theme"
+                  loop
+                  nav
+                  margin={8}
+                  autoPlay={true}
+                  autoplayTimeout={2000}
+                >
+                  {categoryIdList.map((val) => {
+                    return (
+                      <button
+                        className="change-id"
+                        style={
+                          categoryId === val.id
+                            ? { color: "white", backgroundColor: "red" }
+                            : {}
+                        }
+                        onClick={() => {
+                          handleSetCategory(val.id);
+                        }}
+                      >
+                        {val.name}
+                      </button>
+                    );
+                  })}
+                </OwlCarousel>
+              )}
             </div>
             <div className="category__right">
               Filter:
