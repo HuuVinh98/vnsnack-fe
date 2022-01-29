@@ -6,53 +6,67 @@ import Item from "../../Popular/Item/Item";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import http from "../../../Store/Variable";
+import apiHttp from "../../../Store/Variable";
 export default function AllallProducts() {
-  const [pageNumber, setPageNumber] = useState(1);
-  const [allProducts, setAllProducts] = useState([]);
-  const [filter, setFilter] = useState("new");
-  const [categoryId, setCategoryId] = useState(1);
-  const handleFilter = (value) => {
-    setFilter(value);
-  };
+  //-------declare variable-------
 
-  const pages = [1, 2, 3, 4, 5]; // số trang
+  const productsOnPage = 5; // quantity of product in one page
+  const [pageNumber, setPageNumber] = useState(1); //page number to get the product
+  const [allProducts, setAllProducts] = useState([]); //All products have been returned
+  const [sort, setSort] = useState("new"); //
+  const [categoryId, setCategoryId] = useState(1); //the id of selected category
+  const [categories, setCategories] = useState([]); //danh sách category ID
+  const [pages, setPages] = useState([]); //
+  const [a, setA] = useState(0);
+  //---------functions--------
+  const handleSort = (value) => {
+    setSort(value);
+  }; // reset sort
 
-  const [categoryIdList, setCategoryIdList] = useState([]); //danh sách category ID
-  //lấy danh sách category ID
   useEffect(() => {
-    fetch(`${http}category`)
+    fetch(`${apiHttp}category`)
       .then((res) => res.json())
-      .then((categoryIdList) => setCategoryIdList(categoryIdList));
-  }, []);
-  //lấy sản phẩm
-  useEffect(() => {
-    async function fetchallProducts() {
-      const requestUrl = `${http}product?take=10&page=${pageNumber}&sort=${filter}&categoryId=${categoryId}`;
-      const response = await fetch(requestUrl);
-      const responseJSON = await response.json();
+      .then((categories) => setCategories(categories.data));
+  }, []); //get all of categories
 
-      setAllProducts(responseJSON);
-    }
-    fetchallProducts();
-  }, [pageNumber, filter, categoryId]);
+  useEffect(() => {
+    fetch(
+      `${apiHttp}product?take=${productsOnPage}&page=${pageNumber}&sort=${sort}&categoryId=${categoryId}`
+    )
+      .then((res) => res.json())
+      .then((allProducts) => {
+        setAllProducts(allProducts.data);
+      });
+  }, [pageNumber, sort, categoryId]); // get proucts from api
+
+  useEffect(() => {
+    fetch(`${apiHttp}product?sort=${sort}&categoryId=${categoryId}`)
+      .then((res) => res.json())
+      .then((a) => {
+        let temp;
+        for (let i = 1; (i = a.data.length); i++) {
+          temp.push(i);
+        }
+        setPages(temp);
+      });
+  }, [sort, categoryId]);
 
   const handleClickAngleLeft = () => {
     if (pageNumber > 1) {
       setPageNumber(pageNumber - 1);
     }
-  };
+  }; //go to previous page
   const handleClickAngleRight = () => {
     if (pageNumber < 5) {
       setPageNumber(pageNumber + 1);
     }
-  };
+  }; //go to next page
   const handleSetPageNumber = (e) => {
     setPageNumber(e);
-  };
+  }; //choose page number
   const handleSetCategory = (value) => {
     setCategoryId(value);
-  };
+  }; // choose category
   return (
     <div className="all-products">
       <div className="container flex f-column a-center">
@@ -60,7 +74,7 @@ export default function AllallProducts() {
           <h4>All allProducts</h4>
           <div className="category flex j-spaceBeween">
             <div className="category__left flex j-spaceBetween">
-              {categoryIdList && (
+              {categories && (
                 <OwlCarousel
                   items={4}
                   responsive={{
@@ -75,7 +89,7 @@ export default function AllallProducts() {
                   autoPlay={true}
                   autoplayTimeout={2000}
                 >
-                  {categoryIdList.map((val) => {
+                  {categories.map((val) => {
                     return (
                       <button
                         className="change-id"
@@ -96,11 +110,11 @@ export default function AllallProducts() {
               )}
             </div>
             <div className="category__right">
-              Filter:
+              Sort:
               <select
-                name="Filter"
-                id="filter"
-                onChange={(e) => handleFilter(e.target.value)}
+                name="Sort"
+                id="sort"
+                onChange={(e) => handleSort(e.target.value)}
               >
                 <option value="new">New</option>
                 <option value="hot">Hot</option>
@@ -146,6 +160,7 @@ export default function AllallProducts() {
                 </span>
               );
             })}
+            {}
           </div>
           <FontAwesomeIcon
             icon={faAngleRight}

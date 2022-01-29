@@ -5,34 +5,33 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import http from "../../Store/Variable";
+import apiHttp from "../../Store/Variable";
 export default function Popular() {
-  const [products, setProducts] = useState([]); // chứa tất cả sản phẩm tìm được
-  const [categoryId, setCategoryId] = useState(1); // state để thay đổi category
-  const [categoryIdList, setCategoryIdList] = useState([]); //danh sách category ID
-  //lấy danh sách category ID
-  useEffect(() => {
-    fetch(`${http}category`)
-      .then((res) => res.json())
-      .then((categoryIdList) => setCategoryIdList(categoryIdList));
-  }, []);
+  // ----------declare variable-------
+  const [products, setProducts] = useState([]); // All products have been returned
+  const [categoryId, setCategoryId] = useState(1); // id of selected category
+  const [categories, setCategories] = useState([]); //all of categories
 
-  // hàm set lại category ID hiện tại
+  //-------------function-------------
+  useEffect(() => {
+    fetch(`${apiHttp}category`)
+      .then((res) => res.json())
+      .then((categories) => setCategories(categories.data));
+  }, []); //get all category from api
+
   const handleSetCategory = (value) => {
     setCategoryId(value);
-    console.log("click");
-  };
+  }; //reset category id  when the customer clicks on another category
 
-  // get api lấy sản phẩm theo category bằng id
   useEffect(() => {
     async function fetchProducts() {
-      const requestUrl = `${http}product?take=8&sort=hot&categoryId=${categoryId}`;
+      const requestUrl = `${apiHttp}product?take=8&sort=hot&categoryId=${categoryId}`;
       const response = await fetch(requestUrl);
       const responseJSON = await response.json();
-      setProducts(responseJSON);
+      setProducts(responseJSON.data);
     }
     fetchProducts();
-  }, [categoryId]);
+  }, [categoryId]); //get products by category id
 
   return (
     <section className="popular">
@@ -42,7 +41,7 @@ export default function Popular() {
             <h2>Popular dish</h2>
           </div>
           <div className="popular-title__bottom flex j-spaceBeweent">
-            {categoryIdList && (
+            {categories && (
               <OwlCarousel
                 items={4}
                 responsive={{
@@ -57,7 +56,7 @@ export default function Popular() {
                 autoPlay={true}
                 autoplayTimeout={2000}
               >
-                {categoryIdList.map((val) => {
+                {categories.map((val) => {
                   return (
                     <button
                       className="change-id"
