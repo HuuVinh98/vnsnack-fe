@@ -8,32 +8,31 @@ import Item from "../../Popular/Item/Item";
 import "./DetailPage.scss";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import apiHttp from "../../../Store/Variable";
 export default function DetailPage() {
-  const { id } = useParams(); //id sản phẩm được chọn
-  const [product, setProduct] = useState({}); // sản phẩm được chọn
-  const [related, setRelated] = useState([]); // các sản phẩm liên quan
-  const http = "http://54.179.249.114:8000/";
-  // lấy api sản phẩm được chọn
-  useEffect(() => {
-    fetch(`${http}product/${id}`)
-      .then((res) => res.json())
-      .then((product) => setProduct(product));
-  }, [id]);
+  //------declare variable---------
+  const { id } = useParams(); //selected product id
+  const [product, setProduct] = useState({}); // slected product
+  const [related, setRelated] = useState([]); // related product
+  let [categoryId, setCategoryId] = useState(0);
 
-  // lấy category id của sản phẩm được chọn để tìm ra các sản phẩm liên quan
-  let categoryId;
-  if (Object.keys(product).length !== 0) {
-    categoryId = product.categories[0].id;
-  } else {
-    categoryId = 0;
-  }
-  // lấy ra các sản phẩm liên quan dựa trên category id
+  //--------functions--------
   useEffect(() => {
-    fetch(`${http}product?sort=new&categoryId=${categoryId}`)
+    fetch(`${apiHttp}product/${id}`)
       .then((res) => res.json())
-      .then((related) => setRelated(related));
-  }, [categoryId]);
+      .then((product) => {
+        setProduct(product.data);
+        if (Object.keys(product.data).length !== 0) {
+          setCategoryId(product.data.categories[0].id);
+        }
+      });
+  }, [id]); // get product from api by id and get category id of this product to get related product
+
+  useEffect(() => {
+    fetch(`${apiHttp}product?sort=new&categoryId=${categoryId}`)
+      .then((res) => res.json())
+      .then((related) => setRelated(related.data));
+  }, [categoryId]); //get related product via category id
 
   return (
     <div className="detail-page">

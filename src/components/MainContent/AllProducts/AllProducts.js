@@ -16,8 +16,8 @@ export default function AllallProducts() {
   const [sort, setSort] = useState("new"); //
   const [categoryId, setCategoryId] = useState(1); //the id of selected category
   const [categories, setCategories] = useState([]); //danh sách category ID
-  const [pages, setPages] = useState([]); //
-  const [a, setA] = useState(0);
+  const [pages, setPages] = useState([1, 2, 3, 4, 5]); //,
+  const [a, setA] = useState([]);
   //---------functions--------
   const handleSort = (value) => {
     setSort(value);
@@ -39,17 +39,18 @@ export default function AllallProducts() {
       });
   }, [pageNumber, sort, categoryId]); // get proucts from api
 
-  useEffect(() => {
-    fetch(`${apiHttp}product?sort=${sort}&categoryId=${categoryId}`)
-      .then((res) => res.json())
-      .then((a) => {
-        let temp;
-        for (let i = 1; (i = a.data.length); i++) {
-          temp.push(i);
-        }
-        setPages(temp);
-      });
-  }, [sort, categoryId]);
+  // useEffect(() => {
+  //   fetch(`http://54.179.249.114:8000/product?sort=new&categoryId=1`)
+  //     .then((res) => res.json())
+  //     .then((a) => {
+  //       // let temp = [];
+  //       // for (let i = 1; (i = Math.ceil(a.data.length / productsOnPage)); i++) {
+  //       //   temp.push(i);
+  //       // }
+  //       // setPages(temp);
+  //       console.log(a);
+  //     });
+  // }, [sort, categoryId]);
 
   const handleClickAngleLeft = () => {
     if (pageNumber > 1) {
@@ -66,7 +67,8 @@ export default function AllallProducts() {
   }; //choose page number
   const handleSetCategory = (value) => {
     setCategoryId(value);
-  }; // choose category
+  }; //choose category
+
   return (
     <div className="all-products">
       <div className="container flex f-column a-center">

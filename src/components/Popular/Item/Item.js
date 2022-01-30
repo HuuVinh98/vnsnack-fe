@@ -7,8 +7,7 @@ import { selectedProduct } from "../../../Store/reducer";
 import { Link } from "react-router-dom";
 import defaultImage from "../../../images/default-image.png";
 export default function Item({ props }) {
-  const [state, dispatch] = useStore(); // dùng để show/hide cart box
-
+  const [state, dispatch] = useStore(); // local state to access homepage
   return (
     <div class="item">
       <div className="item__image">
