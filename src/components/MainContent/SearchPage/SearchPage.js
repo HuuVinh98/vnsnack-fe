@@ -4,21 +4,23 @@ import SearchItem from "./SearchItem/SearchItem";
 import Item from "../../Popular/Item/Item";
 import "./SearchPage.scss";
 import { useState, useEffect } from "react";
+import apiHttp from "../../../Store/Variable";
 export default function SearchPage() {
+  //------declare variable-------------
   const [products, setProducts] = useState([]); // chứa tất cả sản phẩm
+  let [search, setSearch] = useState([]); // chứa các sản phẩm phù hợp với từ khoá
+
   // lấy tất cả sản phẩm về
   useEffect(() => {
     async function fetchProducts() {
-      const requestUrl = `http://api.vnsnack.com/product?sort=new`;
+      const requestUrl = `${apiHttp}product?sort=new`;
       const response = await fetch(requestUrl);
       const responseJSON = await response.json();
       //const { data } = responseJSON;
-      setProducts(responseJSON);
+      setProducts(responseJSON.data);
     }
     fetchProducts();
   }, []);
-
-  let [search, setSearch] = useState([]); // chứa các sản phẩm phù hợp với từ khoá
 
   //kiểm tra trùng khớp giữa từ khoá và tên sản phẩm
   let handleKeyUp = (e) => {

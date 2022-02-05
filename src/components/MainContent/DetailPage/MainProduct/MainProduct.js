@@ -6,7 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus, faHeart } from "@fortawesome/free-solid-svg-icons";
 import defaultImage from "../../../../images/default-image.png";
 import ReactHtmlParser from "react-html-parser";
-
+import Markdown from "markdown-to-jsx";
+//import { convertToRaw } from "draft-js";
+import draftToHtml from "draftjs-to-html";
 export default function MainProduct({ props }) {
   return (
     <div class="main-product">
@@ -51,7 +53,7 @@ export default function MainProduct({ props }) {
           <h3>${props.price}</h3>
         </div>
         <div class="right-bot">
-          <p>{ReactHtmlParser(props.description)}</p>
+          <div>{ReactHtmlParser(props.description)}</div>
 
           <div class="product-quantity">
             <div class="quantity flex">

@@ -9,7 +9,6 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import apiHttp from "../../../Store/Variable";
 export default function AllallProducts() {
   //-------declare variable-------
-
   const productsOnPage = 5; // quantity of product in one page
   const [pageNumber, setPageNumber] = useState(1); //page number to get the product
   const [allProducts, setAllProducts] = useState([]); //All products have been returned
@@ -102,6 +101,7 @@ export default function AllallProducts() {
                         }
                         onClick={() => {
                           handleSetCategory(val.id);
+                          handleSetPageNumber(1);
                         }}
                       >
                         {val.name}
